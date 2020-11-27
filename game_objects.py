@@ -1,7 +1,7 @@
 import random
 import pygame
 
-class Star:
+class RadialStar:
     def __init__(self, screen):
         self.screen = screen
         self.scr_width = screen.get_size()[0]
