@@ -1,7 +1,7 @@
 import pygame
 import numpy as np
 import random
-from game_objects import HorizontalStar
+from game_objects import RadialStar
 
 WIDTH = 800
 HEIGHT = 800
@@ -26,7 +26,7 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     for _ in range(MAX_STARS):
-        starfield.append(HorizontalStar(screen))
+        starfield.append(RadialStar(screen))
 
     pygame.display.set_caption("PyGame")
 
@@ -48,9 +48,9 @@ def create_stars(screen):
     for i in range(0, MAX_STARS):
         if starfield[i].done():
             del starfield[i]
-            newStar = HorizontalStar(screen)
-            newStar.x = 0
-            starfield.append(newStar)
+            newFlake = RadialStar(screen)
+            #newFlake.y = 0
+            starfield.append(newFlake)
 
 
 if __name__ == "__main__":
