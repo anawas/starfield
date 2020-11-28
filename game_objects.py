@@ -7,7 +7,7 @@ class RadialStar:
         self.scr_width = screen.get_size()[0]
         self.scr_height = screen.get_size()[1]
         self.radius = 1
-        self.verlocity = 8
+        self.velocity = 8
         self.x = random.randint(-self.scr_width/2, self.scr_width/2)
         self.y = random.randint(-self.scr_height/2, self.scr_height/2)
         self.z = random.randint(100, 500)
@@ -26,7 +26,7 @@ class RadialStar:
     def update(self):
         if self.done():
             return
-        self.z -= self.verlocity
+        self.z -= self.velocity
         pygame.draw.circle(self.screen, self.__set_color(), self.translate(), self.radius)
 
     def translate(self):        
@@ -35,8 +35,45 @@ class RadialStar:
         return (scr_x, scr_y)
     
     def done(self):
-        if self.z <= self.verlocity:
+        if self.z <= self.velocity:
             return True
         return False
         
+
+class HorizontalStar:
+    def __init__(self, screen):
+        self.screen = screen
+        self.scr_width = screen.get_size()[0]
+        self.scr_height = screen.get_size()[1]
+        self.radius = 1
+        self.x = random.randint(0, self.scr_width)
+        self.y = random.randint(0, self.scr_height)
+        self.z = random.randint(1, 10)
+        self.color = self.__set_color()
+
+    def __set_color(self):
+        gray_value = 20*self.z
+        if gray_value <= 0:
+            gray_value = 0
+
+        red = gray_value
+        green = gray_value
+        blue = gray_value
+        return (red, green, blue)
+
+    def update(self):
+        if self.done():
+            return
+        pygame.draw.circle(self.screen, self.__set_color(), self.translate(), self.radius)
+
+    def translate(self):        
+        self.x += self.z
+        scr_x = self.x 
+        scr_y = self.y
+        return (scr_x, scr_y)
     
+    def done(self):
+        if self.x > self.scr_width:
+            return True
+        return False
+
