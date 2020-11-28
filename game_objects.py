@@ -50,31 +50,14 @@ class RadialStar(Star):
         return False
         
 
-class HorizontalStar:
+class HorizontalStar(Star):
     def __init__(self, screen):
-        self.screen = screen
-        self.scr_width = screen.get_size()[0]
-        self.scr_height = screen.get_size()[1]
-        self.radius = 1
-        self.x = random.randint(0, self.scr_width)
-        self.y = random.randint(0, self.scr_height)
+        super().__init__(screen)
         self.z = random.randint(1, 10)
-        self.color = self.__set_color()
 
-    def __set_color(self):
+    def _set_color(self):
         gray_value = 20*self.z
-        if gray_value <= 0:
-            gray_value = 0
-
-        red = gray_value
-        green = gray_value
-        blue = gray_value
-        return (red, green, blue)
-
-    def update(self):
-        if self.done():
-            return
-        pygame.draw.circle(self.screen, self.__set_color(), self.translate(), self.radius)
+        return (gray_value, gray_value, gray_value)
 
     def translate(self):        
         self.x += self.z
