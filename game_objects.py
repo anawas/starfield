@@ -36,11 +36,7 @@ class RadialStar(Star):
         super().__init__(screen)
         self.x = random.randint(-self.scr_width/2, self.scr_width/2)
         self.y = random.randint(-self.scr_height/2, self.scr_height/2)
-
-    def update(self):
-        if self.done():
-            return
-        pygame.draw.circle(self.screen, self._set_color(), self.translate(), self.radius)
+        self.z = random.randint(100, 500)
 
     def translate(self):        
         self.z -= self.velocity

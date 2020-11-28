@@ -1,7 +1,7 @@
 import pygame
 import numpy as np
 import random
-from game_objects import Snowflake
+from game_objects import RadialStar
 
 WIDTH = 800
 HEIGHT = 800
@@ -26,7 +26,7 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     for _ in range(MAX_STARS):
-        starfield.append(Snowflake(screen))
+        starfield.append(RadialStar(screen))
 
     pygame.display.set_caption("PyGame")
 
@@ -48,9 +48,7 @@ def create_stars(screen):
     for i in range(0, MAX_STARS):
         if starfield[i].done():
             del starfield[i]
-            newFlake = Snowflake(screen)
-            newFlake.y = 0
-            starfield.append(newFlake)
+            starfield.append(RadialStar(screen))
 
 
 if __name__ == "__main__":
